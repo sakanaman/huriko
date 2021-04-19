@@ -3,17 +3,17 @@ import matplotlib.pyplot as plt
 import matplotlib.animation as anm
 
 
-m1 = 1.0
-m2 = 5.0
-l1 = 2.0
-l2 = 1.0
+m1 = 1.2
+m2 = 0.1
+l1 = 1.4
+l2 = 1.2
 g = 9.8
-start_theta1 = np.pi/2.0
-start_theta2 = np.pi/2.0
+start_theta1 = 3.1
+start_theta2 = -2.0
 start_omega1 = 0.0
 start_omega2 = 0.0
 T = 30
-n = 300
+n = 3000
 h = T/n
 
 
@@ -27,6 +27,9 @@ def f3(a,b,c,d):
     det_under = (m1 + m2)*l1*l2*l2 - m2*l1*l2*l2*np.cos(a - b)*np.cos(a - b)
 
     A = -m2*l2*d*d*np.sin(a - b) - (m1 + m2)*g*np.sin(a)
+    if np.isinf(A):
+        print(b)
+        exit()
     B = m2*l2*np.cos(a - b)
     C =  l1*l2*c*c*np.sin(a - b) - g*l2*np.sin(b)
     D = l2*l2
@@ -86,7 +89,7 @@ def solve_with_runge_kutta():
 def update(frames, ax, data, dt):
     ax.clear()
 
-    now_data = data[frames]
+    now_data = data[5 * frames]
     theta1 = now_data[0]
     theta2 = now_data[1]
 
@@ -107,7 +110,7 @@ if __name__ == "__main__":
     fig = plt.figure()
     ax = fig.add_subplot(1,1,1)
 
-    anime = anm.FuncAnimation(fig, update, fargs=(ax, U, h), frames=n + 1, interval=70)
+    anime = anm.FuncAnimation(fig, update, fargs=(ax, U, h), frames=(n + 1)//5, interval=1)
     #anime.save("huriko.gif")
 
     plt.show()
