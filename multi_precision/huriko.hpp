@@ -106,14 +106,14 @@ void solve_with_runge_kutta(dim1<Real>& U, const Param<Real>& param)
         U[2] = param.start_omega1;
         U[3] = param.start_omega2;
 
-        std::vector<Real> ui(4, (Real)0);
-        std::vector<Real> k1(4, (Real)0);
-        std::vector<Real> k2(4, (Real)0);
-        std::vector<Real> k3(4, (Real)0);
-        std::vector<Real> k4(4, (Real)0);
-        std::vector<Real> param2(4, (Real)0);
-        std::vector<Real> param3(4, (Real)0);
-        std::vector<Real> param4(4, (Real)0);
+        dim1<Real> ui(4, (Real)0);
+        dim1<Real> k1(4, (Real)0);
+        dim1<Real> k2(4, (Real)0);
+        dim1<Real> k3(4, (Real)0);
+        dim1<Real> k4(4, (Real)0);
+        dim1<Real> param2(4, (Real)0);
+        dim1<Real> param3(4, (Real)0);
+        dim1<Real> param4(4, (Real)0);
 
         for(int i = 0; i < n; ++i)
         {
